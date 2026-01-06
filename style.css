@@ -1,310 +1,322 @@
-/* --- ESTILOS GENERALES (Mantenidos de tu código original) --- */
-:root {
-    --bg-dark: #1f2a38;     
-    --bg-card: #283443;     
-    --color-primary: #00bcd4; 
-    --color-secondary: #ff9800; 
-    --color-success: #4CAF50; 
-    --color-danger: #f44336;  
-    --color-text: #e0e0e0;
-    --color-neutral: #607d8b; /* Nuevo color para el campo de caja */
+
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; }
+        .controles { padding: 10px; text-align: center; background: #222; position: sticky; top: 0; z-index: 100; display: flex; justify-content: center; gap: 10px; }
+        .btn-pdf { padding: 10px 20px; background-color: #d32f2f; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-borrar { padding: 10px 20px; background-color: #616161; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+        /* Busca #documento y cámbialo por este: */
+        #documento { 
+            width: 210mm; 
+            background: white; 
+            margin: 0 auto; 
+            /* Aumentamos el padding lateral para "empujar" el contenido hacia adentro */
+            padding: 10mm 8mm; 
+            box-sizing: border-box;
+            min-height: 270mm; 
+            display: block; 
+        }
+
+        /* Busca .tablas-flex y cámbialo por este: */
+        .tablas-flex { 
+            display: flex; 
+            gap: 10px; /* Reducimos el hueco entre tablas para que quepan mejor */
+            align-items: flex-start; 
+            justify-content: space-between; 
+            width: 100%; 
+        }
+
+        .col-izq {
+            display: flex;
+            flex-direction: column;
+            width: 330px;
+
+            /* 👇 MOVER MÁS A LA IZQUIERDA */
+            margin-left: -4mm;
+        }
+
+        /* Busca .res-table y cámbialo por este: */
+        .res-table { 
+            min-width: 360px; /* Reducimos el ancho mínimo para que no se desborde */
+            flex-grow: 1;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between; /* alineación horizontal */
+            align-items: center;           /* centra verticalmente los inputs */
+            margin-bottom: 15px;
+            gap: 10px;                     /* separación entre campos */
+        }
+
+        .campo {
+            font-size: 16px;       /* tamaño más compacto */
+            font-weight: bold;     /* grueso */
+            display: flex;
+            align-items: center;
+            gap: 5px;              /* espacio entre etiqueta y input */
+        }
+
+        .input-header {
+            font-size: 16px;       /* mismo tamaño que la etiqueta */
+            font-weight: bold;
+            border: none;          
+            border-bottom: 1.5px solid #000; /* línea inferior visible para escribir */
+            padding: 2px 5px;
+            width: 120px;          /* ancho uniforme y compacto */
+            outline: none;
+            text-align: left;
+        }
+
+
+
+
+        table { border-collapse: collapse; border: 1.2px solid #000; width: 100%; table-layout: fixed; }
+        th { background-color: #eee; font-weight: bold; font-size: 10px; height: 20px; border: 1px solid #000; }
+        td { border: 1px solid #000; padding: 0; text-align: center; font-size: 10px; height: 17px; box-sizing: border-box; }
+
+        .prod-col { text-align: left; padding-left: 5px; width: 130px; overflow: hidden; white-space: nowrap; }
+        .multi-cont { display: flex; width: 100%; height: 100%; }
+        .input-entrega { width: 20%; height: 100%; border: none; border-right: 1px solid #000; text-align: center; font-size: 10px; padding: 0; }
+        .input-entrega:last-child { border-right: none; }
+        .input-dev, .input-venta { width: 100%; height: 100%; border: none; text-align: center; font-size: 11px; font-weight: bold; background: transparent; }
+
+        /* SOLUCIÓN: CONECTAR CELDA TOTAL CON LA DE ARRIBA */
+        .total-fila td { 
+            border: none; /* Quitamos bordes por defecto */
+        }
+
+        .total-etiqueta {
+            text-align: right;
+            padding-right: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+/* =========================
+   RESPONSIVE PARA CELULARES
+   ========================= */
+@media (max-width: 768px) {
+
+    body {
+        background: #eaeaea;
+    }
+
+    /* Botones */
+    .controles {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .btn-pdf, .btn-borrar {
+        flex: 1;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Documento deja de ser A4 fijo */
+    #documento {
+        width: 100%;
+        min-height: auto;
+        padding: 8px;
+    }
+
+    /* Header */
+    h1 {
+        font-size: 18px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .header-info {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .campo {
+        font-size: 12px;
+    }
+
+    /* Tablas en columna */
+    .tablas-flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .col-izq {
+        width: 100%;
+    }
+
+    /* Scroll horizontal para tablas grandes */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        font-size: 10px;
+    }
+
+    /* Inputs más cómodos */
+    input {
+        font-size: 12px;
+    }
+
+    .input-entrega {
+        width: 22%;
+        font-size: 11px;
+    }
+
+    /* Tabla de resumen */
+    .res-table {
+        min-width: 100%;
+    }
+
+    .total-etiqueta {
+        font-size: 14px;
+    }
+
+    .total-celda {
+        font-size: 18px;
+        height: 40px;
+    }
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark); 
-    color: var(--color-text);
+/* =========================
+   EXTRA: celulares chicos
+   ========================= */
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 16px !important;
+    }
+
+    th, td {
+        font-size: 9px;
+    }
+
+    .total-celda {
+        font-size: 16px;
+    }
 }
-
-.container {
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 15px 10px;
-}
-
-h1 { color: var(--color-primary); text-align: center; margin-bottom: 5px; font-size: 1.8em; }
-.subtitle { color: var(--color-secondary); text-align: center; margin-bottom: 20px; font-size: 1em; font-weight: 500; }
-
-/* --- BOTONES DE NAVEGACIÓN (Tabs) --- */
-.tab-controls { display: flex; margin-bottom: 15px; gap: 10px; }
-.tab-button {
-    flex-grow: 1; padding: 12px; border: none; border-radius: 6px; cursor: pointer;
-    font-size: 1em; font-weight: bold; transition: background-color 0.3s, opacity 0.3s;
-    color: white;
-}
-
-#btn-registros { background-color: var(--color-secondary); }
-#btn-registros.active { box-shadow: 0 0 10px rgba(255, 152, 0, 0.8); }
-
-#btn-reporte { background-color: var(--color-success); opacity: 0.5; }
-#btn-reporte.active { opacity: 1; box-shadow: 0 0 10px rgba(76, 175, 80, 0.8); }
-#btn-reporte:disabled { cursor: not-allowed; }
-
-/* --- VISTA DE REGISTROS (Input View) --- */
-#registros-view { display: none; }
-
-/* Contenedores para separar inventario de botellas de venta por unidad */
-#inventory-list, #unit-sale-list { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 5px; 
-    margin-bottom: 15px; 
-}
-
-.section-header {
-    color: var(--color-primary);
-    font-size: 1.2em;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding-left: 5px;
-    border-bottom: 2px solid var(--color-secondary);
-}
-
-.product-item { background-color: var(--bg-card); padding: 10px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); border-left: 3px solid var(--color-secondary); }
-
-/* Resalta los productos de venta por unidad */
-.unit-sale-item { 
-    border-left: 3px solid var(--color-primary); 
-    background-color: #2b384a; 
-}
-
-.product-header, .product-details { display: flex; justify-content: space-between; align-items: center; }
-.product-header { margin-bottom: 8px; font-weight: bold; }
-.price-tag { font-size: 0.9em; color: var(--color-secondary); font-weight: normal; }
-
-/* Ajuste de ancho para items de solo "Vendidas" */
-.input-item { display: flex; flex-direction: column; align-items: center; width: 20%; }
-.unit-sale-details .input-item { width: 40%; } /* Le da más espacio al campo de venta por unidad */
-
-.input-item label { font-size: 0.7em; color: #aaaaaa; margin-bottom: 2px; text-transform: uppercase; white-space: nowrap; }
-
-input[type="number"] {
-    width: 90%; padding: 5px 2px; border: none; border-radius: 4px; text-align: center;
-    font-size: 0.9em; background-color: #3f4a5a; color: var(--color-text); box-sizing: border-box;
-    -moz-appearance: textfield; 
-}
-
-/* Estilo para el input de solo "Vendidas" */
-.unit-sale-details input[type="number"] {
-     width: 100%;
-     border: 1px solid var(--color-primary);
-     color: var(--color-primary);
-}
-
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-
-.revenue-display { 
-    width: 35%; text-align: right; font-size: 0.9em; font-weight: bold; background-color: #3f4a5a; 
-    padding: 5px; border-radius: 4px; line-height: 1.2;
-}
-.revenue-display .units-sold { color: var(--color-primary); display: block; }
-.revenue-display .money-sold { color: var(--color-secondary); font-size: 1.1em; display: block; }
-
-/* Ajustes para el display de ingresos de venta por unidad */
-.unit-sale-details .revenue-display { width: 50%; } 
-.unit-sale-details .revenue-display .money-sold { color: var(--color-success); }
+        .total-celda { 
+            border-left: 1.2px solid #000 !important;
+            border-right: 1.2px solid #000 !important;
+            border-bottom: 1.2px solid #000 !important;
+            border-top: 1.2px solid #000 !important;
+            font-size: 16px; 
+            background-color: #fffde7; 
+            height: 35px; 
+            font-weight: bold;
+            text-align: center;
+            /* SOLUCIÓN */
+            white-space: normal;       /* permite que el texto se rompa */
+            word-wrap: break-word;     /* corta palabra si es necesario */
+            overflow: hidden;          /* evita scroll dentro de la celda */
+            padding: 2px 4px;          /* ajusta un poco el padding */
+        }
 
 
-/* --- GRUPO DE BOTONES (Mantenido) --- */
-#button-group {
-    display: flex;
-    justify-content: space-between; 
-    gap: 5px; 
-    margin-top: 15px;
-}
 
-#calculate-button, #clear-initial-button {
-    padding: 8px 10px; 
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9em; 
-    font-weight: bold;
-    flex-grow: 1; 
-    width: 50%; 
-    white-space: nowrap; 
-}
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+        @media print {
+            .controles {
+                display: none !important;
+            }
 
-#calculate-button {
-    background-color: var(--color-secondary); 
-    color: white; 
-    order: 1; 
-}
-#calculate-button:hover { background-color: #e68a00; }
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+            }
 
-#clear-initial-button {
-    background-color: #607d8b; 
-    color: white; 
-    order: 2; 
-}
-#clear-initial-button:hover { background-color: #546e7a; }
+            #documento {
+                width: 210mm !important;
+                margin: 0 auto !important;     /* ✅ CENTRADO REAL */
+                padding: 5mm 10mm !important; /* ✅ MISMO padding */
+                min-height: auto !important;
+                box-sizing: border-box !important;
+            }
+        }
 
-/* --- CAMPO DE INGRESO DE CAJA FÍSICA (NUEVO) --- */
-#cash-input-group {
-    background-color: #3f4a5a;
-    padding: 10px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    border-left: 4px solid var(--color-neutral);
-}
-#cash-input-group label {
-    font-weight: bold;
-    color: var(--color-text);
-    font-size: 0.9em;
-}
-#cash-input-group input {
-    width: 45%;
-    padding: 8px;
-    font-size: 1.1em;
-    text-align: right;
-    border: 1px solid var(--color-neutral);
-    color: var(--color-secondary);
-}
 
-/* --- VISTA DE REPORTE (Mantenido) --- */
-#reporte-view {
-    display: none;
-    padding: 10px;
-    background-color: var(--bg-card);
-    border-radius: 8px;
-    overflow-x: hidden; 
-}
+        /* ===== MEJORA VISUAL CAJA ===== */
 
-/* --- Estilos del Reporte (Mantenidos) --- */
-.report-header-row {
-    display: flex;
-    background-color: #3f4a5a;
-    font-weight: bold;
-    padding: 8px 0;
-    border-radius: 4px 4px 0 0;
-    margin-bottom: 5px;
-}
-.report-data-row {
-    display: flex;
-    background-color: var(--bg-dark);
-    border-bottom: 1px solid #3f4a5a;
-    padding: 8px 0;
-}
-.report-data-row:nth-child(even) {
-    background-color: #2c3a4a;
-}
-.report-cell {
-    padding: 0 5px;
-    text-align: center;
-}
-.col-producto { 
-    width: 28%; text-align: left; padding-left: 8px; font-weight: bold; color: var(--color-primary);
-    overflow-x: auto; -webkit-overflow-scrolling: touch; text-overflow: unset; white-space: nowrap; 
-}
-.col-producto::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
-.col-producto { scrollbar-width: none; }
-.col-producto { -ms-overflow-style: none; }
+        .fila-simple td {
+            height: 84px;
+        }
 
-.col-vendido { width: 22%; color: var(--color-secondary); } 
-.col-regalo { width: 22%; color: var(--color-danger); } 
-.col-ingreso { width: 28%; font-weight: bold; color: var(--color-success); } 
+        .celda-input {
+            border: 1.2px solid #000; /* todos los bordes visibles */
+            padding: 0;
+            height: 35px;
+            box-sizing: border-box;   /* evita que el input sobresalga */
+            background: #fffde7;
+        }
+        #descuento,
+        #plata-real {
+            text-align: left;       /* mueve el texto a la izquierda */
+            padding-left: 5px;      /* separa un poco del borde */
+            font-size: 16px;        /* opcional, ajustar tamaño visual */
+            font-weight: bold;
+        }
+        #gran-total {
+            text-align: left;       /* igual que los inputs */
+            padding-left: 5px;      /* separación consistente */
+        }
 
-.total-summary-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-top: 2px solid var(--color-secondary);
-    margin-top: 15px;
-    font-weight: bold;
-}
-.total-summary-row .col-ingreso {
-    text-align: right;
-    padding-right: 5px;
-}
+        .input-caja {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: left;  /* movido a la izquierda */
+            padding-left: 5px; /* opcional, para que no toque el borde */
+            font-size: 18px;
+            font-weight: bold;
+            background: transparent;
+            outline: none;
+            box-sizing: border-box;
+        }
 
-/* --- Cuadre de Caja (Nuevos estilos) --- */
-#final-summary {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: var(--bg-card);
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.6); 
-}
 
-#cuadre-result {
-    font-weight: bold;
-    font-size: 1.3em;
-    padding: 10px 5px;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-.cuadra { background-color: var(--color-success); color: white; }
-.falta { background-color: var(--color-danger); color: white; }
-.sobra { background-color: var(--color-secondary); color: var(--bg-dark); }
+        .total-grande {
+            font-size: 15px;
+        }
 
-#discrepancy-analysis {
-    font-size: 0.95em;
-    color: #ccc;
-    padding: 10px;
-    border: 1px solid #444;
-    border-radius: 4px;
-    margin-top: 10px;
-    text-align: left;
-    background-color: #1a232e;
-}
+      /* Aumentar altura de la celda de estado */
+      .fila-estado td {
+          height: 60px;  /* antes 32px, ahora más alto */
+          min-height: 60px; /* asegura que incluso si está vacía mantenga altura */
+      }
 
-/* Estilos para los totales de resumen del cuadre */
-.summary-line {
-    font-weight: bold;
-    margin: 5px 0;
-}
-#total-revenue-display-theoretical {
-    color: var(--color-success);
-    font-size: 1.2em;
-}
-#total-physical-display {
-    color: var(--color-secondary);
-    font-size: 1.2em;
-}
-#total-revenue-display {
-     /* Ocultado para que solo se vea el total teórico en el reporte */
-    display: none;
-}
+      .estado-celda {
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+          background: #f5f5f5;
+          white-space: normal;
+          word-wrap: break-word;
+          overflow: hidden;
+          padding: 8px;  /* un poco más de padding para que se vea más "grande" */
+          box-sizing: border-box; /* asegura que padding no afecte el tamaño total */
+      }
 
-/* Estilos específicos para las líneas de totales en el reporte */
-.report-section-header {
-    font-size: 1em;
-    font-weight: bold;
-    color: var(--color-primary);
-    margin-top: 10px;
-    margin-bottom: 5px;
-    padding-left: 5px;
-}
+        /* SEPARACIÓN REAL ENTRE TABLAS (PDF FRIENDLY) */
+        .tablas-flex > table,
+        .tablas-flex > .col-izq {
+            margin-right: 5mm;
+        }
 
-/* --- ESTILO DEL MODAL/TOAST (Mensaje de Confirmación) --- */
-#toast-message {
-    visibility: hidden; 
-    min-width: 250px;
-    background-color: var(--color-success);  
-    color: #fff;
-    text-align: center;
-    border-radius: 8px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    top: 50%; 
-    transform: translate(-50%, -50%); 
-    font-size: 1.1em;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.5s, top 0.5s;
-}
+        .tablas-flex > table:last-child {
+            margin-right: 0;
+        }
 
-#toast-message.show {
-    visibility: visible;
-    opacity: 1;
-    top: 45%; 
+        .espacio-medio {
+            height: 6mm;   /* separación entre tablas */
+        }
+@media (max-width: 768px) {
+    /* Mueve la tabla de productos un poco a la derecha */
+    .col-izq {
+        margin-left: 4mm; /* ajusta el valor según lo necesites */
+    }
 }
