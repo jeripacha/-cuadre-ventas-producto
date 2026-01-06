@@ -10,18 +10,47 @@
         .btn-pdf { padding: 10px 20px; background-color: #d32f2f; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .btn-borrar { padding: 10px 20px; background-color: #616161; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
+        /* Busca #documento y cámbialo por este: */
         #documento { 
-            width: 210mm; background: white; margin: 0 auto; padding: 5mm 10mm; box-sizing: border-box;
-            min-height: 270mm; display: flex; flex-direction: column;
+            width: 210mm; 
+            background: white; 
+            margin: 0 auto; 
+            /* Aumentamos el padding lateral para "empujar" el contenido hacia adentro */
+            padding: 10mm 8mm; 
+            box-sizing: border-box;
+            min-height: 270mm; 
+            display: block; 
+        }
+
+        /* Busca .tablas-flex y cámbialo por este: */
+        .tablas-flex { 
+            display: flex; 
+            gap: 10px; /* Reducimos el hueco entre tablas para que quepan mejor */
+            align-items: flex-start; 
+            justify-content: space-between; 
+            width: 100%; 
+        }
+
+        .col-izq {
+            display: flex;
+            flex-direction: column;
+            width: 330px;
+
+            /* 👇 MOVER MÁS A LA IZQUIERDA */
+            margin-left: -4mm;
+        }
+
+        /* Busca .res-table y cámbialo por este: */
+        .res-table { 
+            min-width: 360px; /* Reducimos el ancho mínimo para que no se desborde */
+            flex-grow: 1;
         }
 
         .header-info { display: flex; justify-content: space-between; margin-bottom: 10px; gap: 10px; }
         .campo { font-size: 12px; font-weight: bold; display: flex; align-items: flex-end; flex: 1; }
         .input-header { border: none; border-bottom: 1px solid #000; width: 100%; font-size: 12px; padding-left: 5px; outline: none; }
 
-        .tablas-flex { display: flex; gap: 15px; align-items: flex-start; justify-content: space-between; flex-grow: 1; }
-        .col-izq { display: flex; flex-direction: column; width: 350px; }
-        .espacio-medio { margin-top: 15px; }
+       
 
         table { border-collapse: collapse; border: 1.2px solid #000; width: 100%; table-layout: fixed; }
         th { background-color: #eee; font-weight: bold; font-size: 10px; height: 20px; border: 1px solid #000; }
@@ -32,8 +61,6 @@
         .input-entrega { width: 20%; height: 100%; border: none; border-right: 1px solid #000; text-align: center; font-size: 10px; padding: 0; }
         .input-entrega:last-child { border-right: none; }
         .input-dev, .input-venta { width: 100%; height: 100%; border: none; text-align: center; font-size: 11px; font-weight: bold; background: transparent; }
-
-        .res-table { min-width: 390px; }
 
         /* SOLUCIÓN: CONECTAR CELDA TOTAL CON LA DE ARRIBA */
         .total-fila td { 
@@ -154,19 +181,120 @@
     }
 }
         .total-celda { 
-            /* Esta es la celda del monto (Bs) */
-            border-left: 1.2px solid #000 !important;   /* Línea izquierda que sube */
-            border-right: 1.2px solid #000 !important;  /* Línea derecha que sube */
-            border-bottom: 1.2px solid #000 !important; /* Línea de base */
-            border-top: 1.2px solid #000 !important;    /* Línea que conecta con la de arriba */
-            font-size: 18px; 
+            border-left: 1.2px solid #000 !important;
+            border-right: 1.2px solid #000 !important;
+            border-bottom: 1.2px solid #000 !important;
+            border-top: 1.2px solid #000 !important;
+            font-size: 16px; 
             background-color: #fffde7; 
             height: 35px; 
             font-weight: bold;
+            text-align: center;
+            /* SOLUCIÓN */
+            white-space: normal;       /* permite que el texto se rompa */
+            word-wrap: break-word;     /* corta palabra si es necesario */
+            overflow: hidden;          /* evita scroll dentro de la celda */
+            padding: 2px 4px;          /* ajusta un poco el padding */
         }
+
+
 
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
+        @media print {
+            .controles {
+                display: none !important;
+            }
+
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+            }
+
+            #documento {
+                width: 210mm !important;
+                margin: 0 auto !important;     /* ✅ CENTRADO REAL */
+                padding: 5mm 10mm !important; /* ✅ MISMO padding */
+                min-height: auto !important;
+                box-sizing: border-box !important;
+            }
+        }
+
+
+        /* ===== MEJORA VISUAL CAJA ===== */
+
+        .fila-simple td {
+            height: 84px;
+        }
+
+        .celda-input {
+            border: 1.2px solid #000; /* todos los bordes visibles */
+            padding: 0;
+            height: 35px;
+            box-sizing: border-box;   /* evita que el input sobresalga */
+            background: #fffde7;
+        }
+        #descuento,
+        #plata-real {
+            text-align: left;       /* mueve el texto a la izquierda */
+            padding-left: 5px;      /* separa un poco del borde */
+            font-size: 16px;        /* opcional, ajustar tamaño visual */
+            font-weight: bold;
+        }
+        #gran-total {
+            text-align: left;       /* igual que los inputs */
+            padding-left: 5px;      /* separación consistente */
+        }
+
+        .input-caja {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: left;  /* movido a la izquierda */
+            padding-left: 5px; /* opcional, para que no toque el borde */
+            font-size: 18px;
+            font-weight: bold;
+            background: transparent;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+
+        .total-grande {
+            font-size: 15px;
+        }
+
+        .fila-estado td {
+            height: 32px;
+        }
+
+        .estado-celda {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            background: #f5f5f5;
+
+            /* Nuevo: ajustes para que no se desborde */
+            white-space: normal;      /* permite que el texto se rompa en varias líneas */
+            word-wrap: break-word;    /* corta palabras largas si hace falta */
+            overflow: hidden;         /* evita scroll dentro de la celda */
+            padding: 4px;             /* espacio interno para que no toque bordes */
+        }
+        /* SEPARACIÓN REAL ENTRE TABLAS (PDF FRIENDLY) */
+        .tablas-flex > table,
+        .tablas-flex > .col-izq {
+            margin-right: 5mm;
+        }
+
+        .tablas-flex > table:last-child {
+            margin-right: 0;
+        }
+
+        .espacio-medio {
+            height: 6mm;   /* separación entre tablas */
+        }
+
     </style>
 </head>
 <body>
@@ -206,10 +334,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="2">VENTAS DIRECTAS</th>
+                            <th>VENTAS DIRECTAS</th>
+                            <th>PRECIO</th>
                             <th style="width: 70px;">CANT.</th>
+                            <th style="width: 80px;">TOTAL</th>
                         </tr>
                     </thead>
+
                     <tbody id="ventas-directas-body"></tbody>
                 </table>
             </div>
@@ -226,67 +357,84 @@
                 <tbody id="resumen-body">
                     </tbody>
                 <tfoot>
-                    <tr class="total-fila">
-                        <td colspan="3" class="total-etiqueta">TOTAL CAJA:</td>
-                        <td id="gran-total" class="total-celda"></td>
+                    <tr>
+                        <td colspan="2" class="total-etiqueta">DESCUENTO Bs:</td>
+                        <td colspan="2" class="celda-input">
+                            <input type="number" id="descuento" class="input-caja" oninput="calcular(); guardarDatos()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="total-etiqueta">TOTAL PLATA REAL Bs:</td>
+                        <td colspan="2" class="celda-input">
+                            <input type="number" id="plata-real" class="input-caja" oninput="calcular(); guardarDatos()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="total-etiqueta total-grande">TOTAL Producto Bs:</td>
+                        <td colspan="2" id="gran-total" class="total-celda"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="total-etiqueta">ESTADO:</td>
+                        <td colspan="2" id="estado-caja" class="estado-celda"></td>
                     </tr>
                 </tfoot>
+
+
+
+
+
             </table>
         </div>
     </div>
-<script>
-    const productos = [
-        { id: "f_buhero", nombre: "Fernet buhero", precio: 350 },
-        { id: "f_branca", nombre: "Fernet branca", precio: 400 },
-        { id: "h_reserva", nombre: "Havana reserva", precio: 350 },
-        { id: "parrales", nombre: "Parrales", precio: 320 },
-        { id: "viuda", nombre: "Viuda", precio: 300 },
-        { id: "jager", nombre: "Jager", precio: 490 },
-        { id: "vodka", nombre: "Vodka", precio: 380 },
-        { id: "jw_black", nombre: "JW Black 750ml", precio: 650 },
-        { id: "tequila_jc", nombre: "Tequila Jose Cuervo", precio: 450 },
-
-        { id: "g_amaz", nombre: "Gin amazonico", precio: 450 },
-        { id: "g_frut", nombre: "Gin frutilla", precio: 450 },
-        { id: "g_bosq", nombre: "Gin frutos del bosque", precio: 450 },
-        { id: "g_andin", nombre: "Gin andino", precio: 450 },
-
-        { id: "corona", nombre: "Corona", precio: 30 },
-        { id: "huari", nombre: "Huari", precio: 30 },
-
-        { id: "coca", nombre: "Cocacola 2L", precio: 30 },
-        { id: "sprite", nombre: "Sprite 2L", precio: 30 },
-        { id: "pomelo", nombre: "Pomelo", precio: 30 },
-        { id: "schwepp", nombre: "Schweppes", precio: 30 },
-        { id: "tonica", nombre: "Agua tonica", precio: 15 },
-        { id: "agua_gas", nombre: "Agua con gas", precio: 30 },
-
-        { id: "monster", nombre: "Monster", precio: 35 },
-        { id: "agua_p", nombre: "Agua pequeña", precio: 15 },
-        { id: "agua_2l", nombre: "Agua 2L", precio: 30 },
-
-        { id: "s_mara", nombre: "Sens maracuya", precio: 30 },
-        { id: "s_aran", nombre: "Sens arandano", precio: 30 },
-        { id: "s_limo", nombre: "Sens limon", precio: 30 },
-        { id: "s_cere", nombre: "Sens cereza", precio: 30 },
-
-        { id: "c2_gr", nombre: "2 click grande", precio: 30 },
-        { id: "c1_gr", nombre: "1 click grande", precio: 30 },
-        { id: "c2_peq", nombre: "2 click pequeño", precio: 25 },
-        { id: "c1_peq", nombre: "1 click pequeño", precio: 25 },
-
-        { id: "encend", nombre: "Encendedor", precio: 5 },
-        { id: "f_ca5", nombre: "Flor de caña 5", precio: 300 },
-        { id: "f_ca7", nombre: "Flor de caña 7", precio: 350 },
-
-        { id: "altosama", nombre: "Altosama", precio: 150 }
-    ];
+    <script>
+        const productos = [
+            { id: "f_buhero", nombre: "Fernet buhero", precio: 350 },
+            { id: "f_branca", nombre: "Fernet branca", precio: 400 },
+            { id: "h_reserva", nombre: "Havana reserva", precio: 350 },
+            { id: "parrales", nombre: "Parrales", precio: 320 },
+            { id: "viuda", nombre: "Viuda", precio: 300 },
+            { id: "jager", nombre: "Jager", precio: 490 },
+            { id: "vodka", nombre: "Vodka", precio: 380 },
+            { id: "jw_black", nombre: "JW Black 750ml", precio: 650 },
+            { id: "tequila_jc", nombre: "Tequila Jose Cuervo", precio: 450 },
+            { id: "g_amaz", nombre: "Gin amazonico", precio: 450 },
+            { id: "g_frut", nombre: "Gin frutilla", precio: 450 },
+            { id: "g_bosq", nombre: "Gin frutos del bosque", precio: 450 },
+            { id: "g_andin", nombre: "Gin andino", precio: 450 },
+            { id: "corona", nombre: "Corona", precio: 30 },
+            { id: "huari", nombre: "Huari", precio: 30 },
+            { id: "coca", nombre: "Cocacola 2L", precio: 30 },
+            { id: "sprite", nombre: "Sprite 2L", precio: 30 },
+            { id: "pomelo", nombre: "Pomelo", precio: 30 },
+            { id: "schwepp", nombre: "Schweppes", precio: 30 },
+            { id: "tonica", nombre: "Agua tonica", precio: 15 },
+            { id: "agua_gas", nombre: "Agua con gas", precio: 30 },
+            { id: "monster", nombre: "Monster", precio: 35 },
+            { id: "agua_p", nombre: "Agua pequeña", precio: 15 },
+            { id: "agua_2l", nombre: "Agua 2L", precio: 30 },
+            { id: "s_mara", nombre: "Sens maracuya", precio: 30 },
+            { id: "s_aran", nombre: "Sens arandano", precio: 30 },
+            { id: "s_limo", nombre: "Sens limon", precio: 30 },
+            { id: "s_cere", nombre: "Sens cereza", precio: 30 },
+            { id: "c2_gr", nombre: "2 click grande", precio: 30 },
+            { id: "c1_gr", nombre: "1 click grande", precio: 30 },
+            { id: "c2_peq", nombre: "2 click pequeño", precio: 25 },
+            { id: "c1_peq", nombre: "1 click pequeño", precio: 25 },
+            { id: "encend", nombre: "Encendedor", precio: 5 },
+            { id: "f_ca5", nombre: "Flor de caña 5", precio: 300 },
+            { id: "f_ca7", nombre: "Flor de caña 7", precio: 350 },
+            { id: "altosama", nombre: "Altosama", precio: 150 }
+        ];
 
         const ventasDirectas = [
-            { id: "v_shots", nombre: "Shots", precio: 30 }, { id: "v_jagerb", nombre: "Jager Boom", precio: 60 },
-            { id: "v_clasicos", nombre: "Clásicos", precio: 35 }, { id: "v_canelazo", nombre: "Canelazo", precio: 40 },
-            { id: "v_marager", nombre: "Maracuyager", precio: 40 }, { id: "v_pachajito", nombre: "Pachajito", precio: 35 },
-            { id: "v_llamita", nombre: "Llamita", precio: 35 }, { id: "v_mocochinchi", nombre: "Mocochinchi Bomb", precio: 25 }
+            { id: "v_shots", nombre: "Shots", precio: 30 },
+            { id: "v_jagerb", nombre: "Jager Boom", precio: 60,},
+            { id: "v_clasicos", nombre: "Clásicos", precio: 35 },
+            { id: "v_canelazo", nombre: "Canelazo", precio: 40 },
+            { id: "v_marager", nombre: "Maracuyager", precio: 40 },
+            { id: "v_pachajito", nombre: "Pachajito", precio: 35 },
+            { id: "v_llamita", nombre: "Llamita", precio: 35 },
+            { id: "v_mocochinchi", nombre: "Mocochinchi Bom", precio: 25 }
         ];
 
         const combos = [
@@ -329,7 +477,12 @@
 
             const tbodyVentas = document.getElementById('ventas-directas-body');
             ventasDirectas.forEach(v => {
-                tbodyVentas.innerHTML += `<tr><td class="prod-col">${v.nombre}</td><td style="width:50px; background:#f9f9f9;">${v.precio} Bs</td><td><input type="number" class="input-venta" id="vd-${v.id}" oninput="manejarInput()"></td></tr>`;
+                tbodyVentas.innerHTML += `<tr>
+                    <td class="prod-col">${v.nombre}</td>
+                    <td style="width:50px; background:#f9f9f9;">${v.precio} Bs</td>
+                    <td><input type="number" class="input-venta" id="vd-${v.id}" oninput="manejarInputDirecta('${v.id}', ${v.precio})"></td>
+                    <td id="total-${v.id}" style="text-align:center; font-weight:bold;"></td>
+                </tr>`;
             });
 
             const tbodyRes = document.getElementById('resumen-body');
@@ -343,6 +496,25 @@
                 }
             });
             cargarDatos();
+        }
+
+        // FUNCIÓN NUEVA: Manejar ventas directas
+        function manejarInputDirecta(id, precio) {
+            const cantidad = Number(document.getElementById("vd-" + id).value) || 0;
+            const total = cantidad * precio;
+            document.getElementById("total-" + id).innerText = total ? total + " Bs" : "";
+            // ------------------------------
+            // RESTA AUTOMÁTICA DEL MIX/INVENTARIO
+            const venta = ventasDirectas.find(v => v.id === id);
+            if (venta && venta.mix) {
+                const row = document.getElementById("row-" + venta.mix);
+                const inputs = row.querySelectorAll('.input-entrega');
+                let actual = Number(inputs[0].value) || 0;
+                inputs[0].value = Math.max(0, actual - (cantidad * (venta.cantMix || 1)));
+            }
+            // --
+            calcular();  // Actualiza gran total y estado
+            guardarDatos();
         }
 
         function manejarInput() { calcular(); guardarDatos(); }
@@ -361,7 +533,7 @@
                 let n = 0;
                 if(Array.isArray(c.base)) { c.base.forEach(b => { n+=copia[b]; copia[b]=0; }); }
                 else { n=copia[c.base] || 0; copia[c.base]=0; }
-                if(n>0) {
+                if(n>0){
                     let mixUsado = n * (c.cantMix||1);
                     if(copia[c.mix] !== undefined) copia[c.mix] = Math.max(0, copia[c.mix] - mixUsado);
                 }
@@ -382,14 +554,45 @@
                 let cant = Number(document.getElementById("vd-"+v.id).value) || 0;
                 total += (cant * v.precio);
             });
-            document.getElementById('gran-total').innerText = total > 0 ? total + " Bs." : "";
-        }
+            const descuento = Number(document.getElementById('descuento')?.value) || 0;
+            const totalCaja = Math.max(0, total - descuento);
+
+            document.getElementById('gran-total').innerText =
+                totalCaja > 0 ? totalCaja + " " : "";
+
+            const plataReal = Number(document.getElementById('plata-real')?.value) || 0;
+            const estado = document.getElementById('estado-caja');
+
+            if (plataReal === 0) {
+                estado.innerText = "";
+            } else if (plataReal === totalCaja) {
+                estado.innerHTML = "<span style='color:green'>CUADRA ✔</span>";
+            } else {
+                const dif = plataReal - totalCaja;
+                if(dif > 0){
+                    estado.innerHTML = "<span style='color:orange'>SOBRANTE  (+" + dif + " Bs)</span>";
+                } else {
+                    estado.innerHTML = "<span style='color:red'>FALTANTE  (" + dif + " Bs)</span>";
+                }
+            }
+
+    }
 
         function guardarDatos() {
             const data = {
-                header: { cajero: document.getElementById('cajero').value, barra: document.getElementById('barra').value, fecha: document.getElementById('fecha').value },
-                suministros: {}, ventasDirectas: {}
+                header: {
+                    cajero: document.getElementById('cajero').value,
+                    barra: document.getElementById('barra').value,
+                    fecha: document.getElementById('fecha').value
+                },
+                suministros: {},
+                ventasDirectas: {},
+                caja: {
+                    descuento: document.getElementById('descuento')?.value || "",
+                    plataReal: document.getElementById('plata-real')?.value || ""
+                }
             };
+
             productos.forEach(p => {
                 const row = document.getElementById("row-" + p.id);
                 data.suministros[p.id] = { entregas: Array.from(row.querySelectorAll('.input-entrega')).map(i => i.value), devolucion: row.querySelector('.input-dev').value };
@@ -413,7 +616,24 @@
                     row.querySelector('.input-dev').value = data.suministros[p.id].devolucion;
                 }
             });
-            ventasDirectas.forEach(v => { if(data.ventasDirectas[v.id]) document.getElementById("vd-"+v.id).value = data.ventasDirectas[v.id]; });
+            ventasDirectas.forEach(v => { 
+                if(data.ventasDirectas[v.id]) 
+                    document.getElementById("vd-"+v.id).value = data.ventasDirectas[v.id]; 
+            });
+
+            if (data.caja) {
+                if (data.caja.descuento !== undefined)
+                    document.getElementById('descuento').value = data.caja.descuento;
+
+                if (data.caja.plataReal !== undefined)
+                    document.getElementById('plata-real').value = data.caja.plataReal;
+            }
+
+            // ACTUALIZA TOTALES INDIVIDUALES AL CARGAR
+            ventasDirectas.forEach(v => {
+                manejarInputDirecta(v.id, v.precio);
+            });
+
             calcular();
         }
 
@@ -421,16 +641,29 @@
 
         function descargarPDF() {
             const element = document.getElementById('documento');
+
             const opt = {
-                margin: [5, 0, 5, 0],
+                margin: 0,
                 filename: 'Pacha_Sunset_Caja.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, letterRendering: true },
-                jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' }
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: {
+                    scale: 2,
+                    scrollY: 0,
+                    useCORS: true
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
             };
+
             html2pdf().set(opt).from(element).save();
         }
+
+
         inicializar();
     </script>
+
 </body>
 </html>
