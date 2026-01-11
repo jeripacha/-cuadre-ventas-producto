@@ -39,13 +39,14 @@ const productos = [
 
 const ventasDirectas = [
     { id: "v_shots", nombre: "Shots", precio: 30 },
-    { id: "v_jagerb", nombre: "Jager Boom", precio: 60,},
+    { id: "v_jagerb", nombre: "Jager Boom", precio: 60 },
     { id: "v_clasicos", nombre: "Clásicos", precio: 35 },
     { id: "v_canelazo", nombre: "Canelazo", precio: 40 },
     { id: "v_marager", nombre: "Maracuyager", precio: 40 },
     { id: "v_pachajito", nombre: "Pachajito", precio: 35 },
     { id: "v_llamita", nombre: "Llamita", precio: 35 },
-    { id: "v_mocochinchi", nombre: "Mocochinchi Bom", precio: 25 }
+    { id: "v_mocochinchi", nombre: "Mocochinchi Bom", precio: 25 },
+    { id: "v_yarda", nombre: "Yarda", precio: 180 }
 ];
 
 const combos = [
