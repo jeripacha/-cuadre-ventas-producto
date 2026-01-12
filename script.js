@@ -52,7 +52,7 @@ const ventasDirectas = [
 const combos = [
     { id: "c_branca", nombre: "Combo Fernet Branca", base: "f_branca", mix: "coca", precio: 400 },
     { id: "c_buhero", nombre: "Combo Fernet Buhero", base: "f_buhero", mix: "coca", precio: 380 },
-    { id: "c_havana", nombre: "Combo Havana Reserva", base: "h_reserva", mix: "coca", precio: 350 },
+    { id: "c_havana", nombre: "Combo Havana Reserva", base: "h_reserva", mix: "coca", precio: 450 },
     { id: "c_parrales", nombre: "Combo Parrales", base: "parrales", mix: "schwepp", precio: 320 },
     { id: "c_viuda", nombre: "Combo Viuda", base: "viuda", mix: "schwepp", precio: 400 },
     { id: "c_vodka", nombre: "Combo Vodka", base: "vodka", mix: "pomelo", precio: 380 },
