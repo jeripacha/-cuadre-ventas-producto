@@ -100,17 +100,6 @@ function inicializar() {
         });
     }
 
-    const tbodyVacios = document.getElementById('filas-vacias');
-    if(tbodyVacios) {
-        for(let i=1; i<=4; i++){
-            tbodyVacios.innerHTML += `<tr>
-                <td class="prod-col"><input type="text" placeholder="..." style="width:100%; border:none; font-size:10px; outline:none;"></td>
-                <td><div class="multi-cont">${Array(5).fill(0).map(() => `<input type="number" class="input-entrega">`).join('')}</div></td>
-                <td><input type="number" class="input-dev"></td>
-                <td style="background:#f0f0f0;"></td>
-            </tr>`;
-        }
-    }
 
     const tbodyVentas = document.getElementById('ventas-directas-body');
     if(tbodyVentas) {
@@ -283,16 +272,36 @@ function cargarDatos() {
 
     ventasDirectas.forEach(v => {
         const input = document.getElementById("vd-"+v.id);
-        if(input && data.ventasDirectas[v.id]) input.value = data.ventasDirectas[v.id];
+        if(input && data.ventasDirectas[v.id] !== undefined) {
+            input.value = data.ventasDirectas[v.id];
+
+            // 👇 recalcular total visual
+            const cantidad = Number(input.value) || 0;
+            const totalTd = document.getElementById("total-" + v.id);
+            if(totalTd && cantidad > 0) {
+                totalTd.innerText = (cantidad * v.precio) + " Bs";
+            }
+        }
     });
 
-    const descuentoInput = document.getElementById('descuento');
-    if(descuentoInput && data.caja.descuento !== undefined) descuentoInput.value = data.caja.descuento;
-    const plataRealInput = document.getElementById('plata-real');
-    if(plataRealInput && data.caja.plataReal !== undefined) plataRealInput.value = data.caja.plataReal;
 
-    // ACTUALIZA LOS TOTALES SIN MOSTRAR NOTIFICACIÓN
+    const descuentoInput = document.getElementById('descuento');
+    if(descuentoInput && data.caja.descuento !== undefined)
+        descuentoInput.value = data.caja.descuento;
+
+    const plataRealInput = document.getElementById('plata-real');
+    if(plataRealInput && data.caja.plataReal !== undefined)
+        plataRealInput.value = data.caja.plataReal;
+
+    // ACTUALIZA TOTALES
     calcular();
+
+    // 👇 volver a calcular el estado si hay plata real
+    if (plataRealInput && plataRealInput.value !== "") {
+        mostrarEstadoCaja();
+    }
+
+
 }
 function borrarTodo() {
     // Limpiar todos los inputs
@@ -307,9 +316,28 @@ function borrarTodo() {
 function descargarPDF() {
     const element = document.getElementById('documento');
 
+    // Tomar valores de los inputs
+    const barra = document.getElementById('barra')?.value.trim();
+    const fecha = document.getElementById('fecha')?.value.trim();
+
+    // Validar que estén completos
+    if (!barra || !fecha) {
+        alert("Por favor ingresa los datos de BARRA y FECHA antes de descargar el PDF.");
+        return; // detiene la función si faltan datos
+    }
+
+    // Limpiar caracteres no válidos
+    const limpiar = (txt) =>
+        txt
+            .replace(/\s+/g, "_")        // espacios → _
+            .replace(/[\/\\:*?"<>|]/g, ""); // caracteres inválidos
+
+    // Nombre de archivo: caja_barra_fecha.pdf
+    const nombreArchivo = `caja_${limpiar(barra)}_${limpiar(fecha)}.pdf`;
+
     const opt = {
         margin: 0,
-        filename: 'Pacha_Sunset_Caja.pdf',
+        filename: nombreArchivo,
         image: { type: 'jpeg', quality: 1 },
         html2canvas: {
             scale: 2,
@@ -325,6 +353,8 @@ function descargarPDF() {
 
     html2pdf().set(opt).from(element).save();
 }
+
+
 
 
 
