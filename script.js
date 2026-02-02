@@ -50,7 +50,7 @@ const ventasDirectas = [
   { id: "v_mocochinchi", nombre: "Mocochinchi Bom", precio: 25 },
    { id: "v_Ruta", nombre: "Ruta", precio: 150 },
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
-  { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 15 },
+  { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 10 },
     { id: "v_gin_amaz_suelto", nombre: "Gin amaz. suelto", precio: 420 },
   { id: "v_yarda", nombre: "Yarda", precio: 180 }
 ];
