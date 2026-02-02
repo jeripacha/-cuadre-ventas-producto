@@ -51,7 +51,7 @@ const ventasDirectas = [
    { id: "v_Ruta", nombre: "Ruta", precio: 150 },
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
   { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 10 },
-  { id: "v_vodka_suelto", nombre: "Vodka suelto", precio: 350 },
+    { id: "v_gin_amaz_suelto", nombre: "Gin amaz. suelto", precio: 420 },
   { id: "v_yarda", nombre: "Yarda", precio: 180 }
 ];
 
@@ -170,14 +170,15 @@ function calcular() {
 
   let copia = {...utiReal};
     // ===============================
-    // AJUSTE AUTOMÁTICO COMBO VODKA
+    // AJUSTE AUTOMÁTICO GIN AMAZÓNICO SUELTO
     // ===============================
-    const vodkaSueltoInput = document.getElementById("vd-v_vodka_suelto");
-    const vodkaSuelto = Number(vodkaSueltoInput?.value) || 0;
+    const ginSueltoInput = document.getElementById("vd-v_gin_amaz_suelto");
+    const ginSuelto = Number(ginSueltoInput?.value) || 0;
 
-    if (copia["vodka"] !== undefined) {
-        copia["vodka"] = Math.max(0, copia["vodka"] - vodkaSuelto);
+    if (copia["g_amaz"] !== undefined) {
+        copia["g_amaz"] = Math.max(0, copia["g_amaz"] - ginSuelto);
     }
+
 
   combos.forEach(c => {
       let n = 0;
