@@ -69,7 +69,7 @@ const combos = [
   { id: "cg_amaz", nombre: "Combo Gin Amazonico", base: "g_amaz", mix: "tonica", cantMix: 2, precio: 450 },
   { id: "cg_frut", nombre: "Combo Gin Frutilla", base: "g_frut", mix: "tonica", cantMix: 2, precio: 450 },
   { id: "cg_bosq", nombre: "Combo Gin F. Bosque", base: "g_bosq", mix: "tonica", cantMix: 2, precio: 450 },
-  { id: "cg_andin", nombre: "Combo Gin Andino", base: "g_andin", mix: "tonica", cantMix: 2, precio: 450 }
+  { id: "cg_andin", nombre: "Combo Gin Andino", base: "g_andin", mix: "tonica", cantMix: 2, precio: 400 }
 ];
 function mostrarNotificacion(mensaje, tipo="ok") {
   const noti = document.getElementById("notificacion");
