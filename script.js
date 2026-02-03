@@ -52,7 +52,7 @@ const ventasDirectas = [
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
   { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 10 },
     { id: "v_gin_amaz_suelto", nombre: "Gin amaz. suelto", precio: 420 },
-  { id: "v_yarda", nombre: "Yarda", precio: 180 }
+  { id: "e_espuma", nombre: "espuma", precio: 25 }
 ];
 
 const combos = [
