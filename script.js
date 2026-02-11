@@ -36,7 +36,8 @@ const productos = [
   { id: "encend", nombre: "Encendedor", precio: 5 },
   { id: "f_ca5", nombre: "Flor de caña 5", precio: 300 },
   { id: "f_ca7", nombre: "Flor de caña 7", precio: 350 },
-  { id: "altosama", nombre: "Altosama", precio: 150 }
+  { id: "altosama", nombre: "Altosama", precio: 150 },
+  { id: "c_latapaceña", nombre: "paceña lata", precio: 20 }
 ];
 
 const ventasDirectas = [
