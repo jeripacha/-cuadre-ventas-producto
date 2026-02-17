@@ -37,7 +37,8 @@ const productos = [
   { id: "f_ca5", nombre: "Flor de caña 5", precio: 300 },
   { id: "f_ca7", nombre: "Flor de caña 7", precio: 350 },
   { id: "altosama", nombre: "Altosama", precio: 150 },
-  { id: "c_latapaceña", nombre: "paceña lata", precio: 20 }
+  { id: "c_latapaceña", nombre: "paceña lata", precio: 20 },
+    { id: "e_espuma", nombre: "espuma", precio: 20 }
 ];
 
 const ventasDirectas = [
@@ -53,8 +54,7 @@ const ventasDirectas = [
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
   { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 10 },
     { id: "v_gin_amaz_suelto", nombre: "Gin amaz. suelto", precio: 420 },
-  { id: "y_yarda", nombre: "yarda", precio: 180 },
-  { id: "e_espuma", nombre: "espuma", precio: 25 }
+  { id: "y_yarda", nombre: "yarda", precio: 180 }
 ];
 
 const combos = [
