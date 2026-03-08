@@ -38,6 +38,10 @@ const productos = [
   { id: "f_ca7", nombre: "Flor de caña 7", precio: 350 },
   { id: "altosama", nombre: "Altosama", precio: 150 },
   { id: "c_latapaceña", nombre: "paceña lata", precio: 20 },
+  
+  { id: "o_choco", nombre: "olmeca chocolate", precio: 450 },
+  
+  { id: "o_reposado", nombre: "olmeca reposado", precio: 450 },
     { id: "e_espuma", nombre: "espuma", precio: 20 }
 ];
 
