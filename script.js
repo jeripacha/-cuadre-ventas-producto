@@ -34,8 +34,8 @@ const productos = [
   { id: "c2_peq", nombre: "2 click pequeño", precio: 25 },
   { id: "c1_peq", nombre: "1 click pequeño", precio: 25 },
   { id: "encend", nombre: "Encendedor", precio: 5 },
-  { id: "f_ca5", nombre: "Flor de caña 5", precio: 300 },
-  { id: "f_ca7", nombre: "Flor de caña 7", precio: 350 },
+  { id: "f_ca5", nombre: "havana especial", precio: 350 },
+  { id: "f_ca7", nombre: "havana 7 años", precio: 450 },
   { id: "altosama", nombre: "Altosama", precio: 150 },
   { id: "c_latapaceña", nombre: "paceña lata", precio: 20 },
   
@@ -57,7 +57,6 @@ const ventasDirectas = [
    { id: "v_Ruta", nombre: "Ruta", precio: 150 },
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
   { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 10 },
-    { id: "v_gin_amaz_suelto", nombre: "Gin amaz. suelto", precio: 420 },
   { id: "y_yarda", nombre: "yarda", precio: 180 }
 ];
 
