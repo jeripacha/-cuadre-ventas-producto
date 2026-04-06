@@ -11,6 +11,7 @@ const productos = [
   { id: "g_amaz", nombre: "Gin amazonico", precio: 450 },
   { id: "g_frut", nombre: "Gin frutilla", precio: 450 },
   { id: "g_bosq", nombre: "Gin frutos del bosque", precio: 450 },
+  { id: "g_bee", nombre: "Gin Beefeter pink", precio: 550 },
   { id: "g_andin", nombre: "Gin andino", precio: 450 },
   { id: "corona", nombre: "Corona", precio: 30 },
   { id: "huari", nombre: "Huari", precio: 30 },
@@ -38,11 +39,8 @@ const productos = [
   { id: "h_e7añ", nombre: "havana 7 años", precio: 450 },
   { id: "altosama", nombre: "Altosama", precio: 150 },
   { id: "c_latapaceña", nombre: "paceña lata", precio: 20 },
-  
   { id: "o_choco", nombre: "olmeca chocolate", precio: 450 },
-  
-  { id: "o_reposado", nombre: "olmeca reposado", precio: 450 },
-    { id: "e_espuma", nombre: "espuma", precio: 20 }
+  { id: "o_reposado", nombre: "olmeca reposado", precio: 450 }
 ];
 
 const ventasDirectas = [
@@ -56,7 +54,6 @@ const ventasDirectas = [
   { id: "v_mocochinchi", nombre: "Mocochinchi Bom", precio: 25 },
    { id: "v_Ruta", nombre: "Ruta", precio: 150 },
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
-  { id: "v_cocarefresco", nombre: "vaso de cocacola", precio: 10 },
   { id: "y_yarda", nombre: "yarda", precio: 180 }
 ];
 
@@ -74,7 +71,8 @@ const combos = [
   { id: "cg_amaz", nombre: "Combo Gin Amazonico", base: "g_amaz", mix: "tonica", cantMix: 2, precio: 450 },
   { id: "cg_frut", nombre: "Combo Gin Frutilla", base: "g_frut", mix: "tonica", cantMix: 2, precio: 450 },
   { id: "cg_bosq", nombre: "Combo Gin F. Bosque", base: "g_bosq", mix: "tonica", cantMix: 2, precio: 450 },
-  { id: "cg_andin", nombre: "Combo Gin Andino", base: "g_andin", mix: "tonica", cantMix: 2, precio: 450 }
+  { id: "cg_andin", nombre: "Combo Gin Andino", base: "g_andin", mix: "tonica", cantMix: 2, precio: 450 },
+   { id: "g_bee", nombre: "Gin Beefeter pink", base: "g_bee", mix: "tonica", cantMix: 2, precio: 550 }
 ];
 function mostrarNotificacion(mensaje, tipo="ok") {
   const noti = document.getElementById("notificacion");
