@@ -1,7 +1,7 @@
 const productos = [
   { id: "f_buhero", nombre: "Fernet buhero", precio: 350 },
   { id: "f_branca", nombre: "Fernet branca", precio: 400 },
-  { id: "h_reserva", nombre: "Havana reserva", precio: 350 },
+  { id: "h_reserva", nombre: "Havana reserva", precio: 400 },
   { id: "parrales", nombre: "Parrales", precio: 350 },
  { id: "casa_real", nombre: "Casa Real", precio: 350 },
   { id: "viuda", nombre: "Viuda", precio: 400 },
@@ -61,7 +61,7 @@ const ventasDirectas = [
 const combos = [
   { id: "c_branca", nombre: "Combo Fernet Branca", base: "f_branca", mix: "coca", precio: 400 },
   { id: "c_buhero", nombre: "Combo Fernet Buhero", base: "f_buhero", mix: "coca", precio: 380 },
-  { id: "c_havana", nombre: "Combo Havana Reserva", base: "h_reserva", mix: "coca", precio: 450 },
+  { id: "c_havana", nombre: "Combo Havana Reserva", base: "h_reserva", mix: "coca", precio: 400 },
   { id: "c_parrales", nombre: "Combo Parrales", base: "parrales", mix: "schwepp", precio: 350 },
 { id: "c_casa_real", nombre: "Combo Casa Real", base: "casa_real", mix: "schwepp", precio: 350 },
   { id: "c_viuda", nombre: "Combo Viuda", base: "viuda", mix: "schwepp", precio: 400 },
