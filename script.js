@@ -333,24 +333,19 @@ function borrarTodo() {
 function descargarPDF() {
   const element = document.getElementById('documento');
 
-  // Tomar valores de los inputs
-  const barra = document.getElementById('barra')?.value.trim();
-  const fecha = document.getElementById('fecha')?.value.trim();
+  // Tomar valores tal cual los escribió el usuario (aunque estén vacíos o incompletos)
+  const barra = document.getElementById('barra')?.value.trim() || "";
+  const fecha = document.getElementById('fecha')?.value.trim() || "";
 
-  // Validar que estén completos
-  if (!barra || !fecha) {
-      alert("Por favor ingresa los datos de BARRA y FECHA antes de descargar el PDF.");
-      return; // detiene la función si faltan datos
-  }
-
-  // Limpiar caracteres no válidos
+  // Limpiar caracteres no válidos para nombre de archivo
   const limpiar = (txt) =>
       txt
-          .replace(/\s+/g, "_")        // espacios → _
-          .replace(/[\/\\:*?"<>|]/g, ""); // caracteres inválidos
+          .replace(/\s+/g, "_")
+          .replace(/[\/\\:*?"<>|]/g, "");
 
-  // Nombre de archivo: caja_barra_fecha.pdf
-  const nombreArchivo = `caja_${limpiar(barra)}_${limpiar(fecha)}.pdf`;
+  // Armar nombre con lo que haya — si algo está vacío, simplemente no aparece
+  const partes = ["caja", limpiar(barra), limpiar(fecha)].filter(Boolean);
+  const nombreArchivo = partes.join("_") + ".pdf";
 
   const opt = {
       margin: 0,
@@ -370,8 +365,6 @@ function descargarPDF() {
 
   html2pdf().set(opt).from(element).save();
 }
-
-
 
 
 
