@@ -54,8 +54,7 @@ const ventasDirectas = [
   { id: "v_mocochinchi", nombre: "Mocochinchi Bom", precio: 25 },
    { id: "v_Ruta", nombre: "Ruta", precio: 150 },
   { id: "v_pachapars", nombre: "pachapars", precio:60 },
-  { id: "y_yarda", nombre: "yarda", precio: 180 },
-    { id: "j_jager", nombre: "jager", precio: 460 }
+  { id: "y_yarda", nombre: "yarda", precio: 180 }
 ];
 
 const combos = [
