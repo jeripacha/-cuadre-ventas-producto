@@ -44,6 +44,7 @@ const productos = [
 
 const ventasDirectas = [
   { id: "v_shots", nombre: "Shots", precio: 30 },
+    { id: "v_shots", nombre: "Shots 2x1", precio: 50},
   { id: "v_jagerb", nombre: "Jager Boom", precio: 60 },
   { id: "v_clasicos", nombre: "Clásicos", precio: 35 },
   { id: "v_canelazo", nombre: "Canelazo", precio: 40 },
